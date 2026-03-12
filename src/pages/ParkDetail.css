@@ -80,3 +80,112 @@
 p {
     color: #2c3e50;
 }
+
+
+.fees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px; 
+  overflow-y: auto; 
+  padding-right: 10px; 
+}
+
+/* Add this new class for the official website link */
+.official-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 10px 15px;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.official-link:hover {
+  background-color: #bdc3c7;
+}
+
+/* --- UTILITY & COMPONENT STYLES --- */
+
+.status-message {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.status-message.error {
+  color: #e74c3c;
+}
+
+.back-link {
+  color: #3498db;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #2980b9;
+}
+
+/* Overrides the default StampButton styles only when inside the header */
+.park-header .stamp-btn {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  width: auto;
+}
+
+.info-text {
+  margin-top: 5px;
+  font-size: 0.95rem;
+  color: #34495e;
+}
+
+.info-text.spaced {
+  margin-bottom: 10px;
+}
+
+.info-text.large {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.directions-link {
+  color: #2980b9;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.directions-link:hover {
+  text-decoration: underline;
+}
+
+/* Modifier class to remove the scrollbar when showing all fees */
+.fees-list.expanded {
+  max-height: none;
+  overflow-y: visible;
+}
+
+.toggle-btn {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #ecf0f1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2c3e50;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #bdc3c7;
+}
+
+/* Forces a grid item to span the entire width of the container */
+.full-width {
+  grid-column: 1 / -1;
+}

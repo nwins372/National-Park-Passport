@@ -1,4 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import { Link } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import { divIcon } from 'leaflet'; 
 import { usePassport } from '../../context/PassportContext'; 
@@ -57,11 +58,10 @@ export default function Map({ parks }) {
                 <br />
                 Location: {park.states}
                 <br />
-                
-                <StampButton 
-                    park={park} 
-                    customStyle={{ marginTop: '10px', padding: '8px 12px' }} 
-                />
+                <Link to={`/park/${park.parkCode}`} className="popup-details-link">
+                  View Park Details &rarr;
+                </Link>
+                <StampButton park={park} />
               </Popup>
             </Marker>
           );

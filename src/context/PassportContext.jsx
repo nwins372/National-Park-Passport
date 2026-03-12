@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { fetchParks } from '../services/npsAPI'; // Import the API function
-
+import { fetchParks } from '../services/npsAPI'; 
 const PassportContext = createContext();
 
 export function PassportProvider({ children }) {

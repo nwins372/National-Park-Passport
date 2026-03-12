@@ -12,7 +12,7 @@ export default function ParkDetail() {
   const [park, setPark] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const getDetails = async () => {
       setIsLoading(true);
@@ -29,11 +29,17 @@ export default function ParkDetail() {
     getDetails();
   }, [id]);
 
-  if (isLoading) return <h2 style={{ textAlign: 'center', marginTop: '3rem' }}>Loading park details...</h2>;
-  if (error || !park) return <h2 style={{ textAlign: 'center', color: 'red' }}>{error}</h2>;
+  if (isLoading) return <h2 className="status-message">Loading park details...</h2>;
+  if (error || !park) return <h2 className="status-message error">{error}</h2>;
 
-  const isStamped = visitedParks.some((p) => p.id === park.id);
   const heroImage = park.images && park.images.length > 0 ? park.images[0].url : '';
+
+  const allFeesAndPasses = [
+    ...(park.entranceFees || []),
+    ...(park.entrancePasses || []).map(pass => ({ ...pass, isPass: true }))
+  ];
+  
+  const displayedFees = allFeesAndPasses.slice(0, 3);
 
   return (
     <div className="park-detail-container">
@@ -42,7 +48,7 @@ export default function ParkDetail() {
       )}
       
       <div className="park-content">
-        <Link to="/" style={{ color: '#3498db', textDecoration: 'none', marginBottom: '1rem', display: 'inline-block' }}>
+        <Link to="/" className="back-link">
           &larr; Back to Map
         </Link>
 
@@ -52,24 +58,25 @@ export default function ParkDetail() {
             <p>{park.designation} • {park.states}</p>
           </div>
           
-            <StampButton 
-                park={park} 
-                customStyle={{ padding: '12px 24px', fontSize: '1.1rem', width: 'auto' }} 
-            />
+            <StampButton park={park} />
         </div>
 
         <p className="park-description">{park.description}</p>
+        
+        {park.url && (
+          <a href={park.url} target="_blank" rel="noopener noreferrer" className="official-link">
+            Visit Official NPS Website ↗
+          </a>
+        )}
 
-        {/* --- MAIN INFO GRID --- */}
         <div className="info-grid">
           
-          {/* Plan Your Visit */}
           <div className="info-section">
             <h3>Plan Your Visit</h3>
             {park.operatingHours?.[0] && (
-              <div style={{ marginBottom: '15px' }}>
+              <div className="info-text.spaced">
                 <strong>Operating Hours: </strong> 
-                <p style={{ marginTop: '5px', fontSize: '0.95rem', color: '#34495e' }}>
+                <p className="info-text">
                   {park.operatingHours[0].description}
                 </p>
               </div>
@@ -77,32 +84,46 @@ export default function ParkDetail() {
             {park.directionsInfo && (
               <div>
                 <strong>Directions: </strong>
-                <p style={{ marginTop: '5px', fontSize: '0.95rem', color: '#34495e' }}>
+                <p className="info-text spaced">
                   {park.directionsInfo}
                 </p>
+                {park.directionsUrl && (
+                  <a href={park.directionsUrl} target="_blank" rel="noopener noreferrer" className="directions-link">
+                    Get Detailed Directions ↗
+                  </a>
+                )}
               </div>
             )}
           </div>
 
           <div className="info-section">
-            <h3>Entrance Fees</h3>
-            {park.entranceFees && park.entranceFees.length > 0 ? (
-              <div className="fees-list">
-                {park.entranceFees.slice(0, 3).map((fee, index) => (
-                  <div key={index} className="fee-item">
-                    <span className="fee-cost">${parseFloat(fee.cost).toFixed(2)}</span>
-                    <span className="fee-title">{fee.title}</span>
-                    <span className="fee-desc">{fee.description}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No fee information available.</p>
-            )}
+            <h3>Entrance Fees & Passes</h3>
+            <div className={`fees-list`}>
+              {allFeesAndPasses.length > 0 ? (
+                <>
+                  {displayedFees.map((fee, index) => (
+                    <div key={index} className="fee-item">
+                      <span className="fee-cost">${parseFloat(fee.cost).toFixed(2)}</span>
+                      <span className="fee-title">{fee.title} {fee.isPass ? "(Pass)" : ""}</span>
+                      <span className="fee-desc">{fee.description}</span>
+                    </div>
+                  ))}
+                  
+                </>
+              ) : (
+                <p>No fee information available.</p>
+              )}
+            </div>
           </div>
 
-          {/* Activities */}
-          <div className="info-section" style={{ gridColumn: '1 / -1' }}>
+          <div className="info-section full-width">
+            <h3>Weather Overview</h3>
+            <p className="info-text large">
+              {park.weatherInfo || "No weather information available."}
+            </p>
+          </div>
+
+          <div className="info-section full-width">
             <h3>Popular Activities</h3>
             <div className="activity-tags">
               {park.activities?.slice(0, 15).map(activity => (
@@ -114,7 +135,6 @@ export default function ParkDetail() {
           </div>
         </div>
 
-        {/* --- IMAGE GALLERY --- */}
         {park.images && park.images.length > 1 && (
           <div className="gallery-section">
             <h3>Photo Gallery</h3>
@@ -132,7 +152,6 @@ export default function ParkDetail() {
           </div>
         )}
 
-        {/* --- CONTACT FOOTER --- */}
         <div className="contact-footer">
           <div>
             <h4>Contact Email</h4>

@@ -67,3 +67,18 @@
 .marker-cluster:hover div {
   background-color: #3498db;
 }
+
+.popup-details-link {
+  display: block; 
+  margin: 10px 0;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.popup-details-link:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
