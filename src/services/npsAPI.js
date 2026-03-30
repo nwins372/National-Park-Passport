@@ -18,18 +18,13 @@ export const fetchParks = async (limit = 500) => {
 export const fetchParkDetails = async (parkCode) => {
   try {
     const response = await fetch(`${BASE_URL}/parks?parkCode=${parkCode}&api_key=${API_KEY}`);
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
     const data = await response.json();
-    
-    // DEFENSIVE CHECK: Ensure data and data.data actually exist before reading index 0
     if (data && data.data && data.data.length > 0) {
       return data.data[0]; 
     } else {
-      // If the API sends weird data, log it so we can see what it actually sent
       console.warn(`No data array returned for park ${parkCode}. API sent:`, data);
       return null;
     }

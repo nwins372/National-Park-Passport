@@ -1,65 +1,149 @@
-
 .park-detail-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 0 3rem 0;
   font-family: var(--nav-font-family, system-ui, sans-serif);
+  color: #2c3e50;
+  padding-bottom: 4rem;
 }
 
-.park-hero {
+.hero-wrapper {
+  position: relative;
   width: 100%;
-  height: 400px;
+  height: 50vh; 
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background-color: #2c3e50;
+  z-index: 1;
 }
 
-.park-content {
-  padding: 2rem;
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Simple dark wash */
+  z-index: 2;
 }
 
-.park-header {
+.hero-title-container {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero-title-container h1 {
+  font-size: 3.5rem;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-title-container p {
+  font-size: 1.2rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* --- 2. THE MAIN CONTENT AREA --- */
+.main-content {
+  max-width: 800px; /* A narrow, readable column */
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* A simple bar to hold the back link and stamp button */
+.action-bar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #ecf0f1;
   padding-bottom: 1rem;
+  border-bottom: 1px solid #ecf0f1;
 }
 
-.park-title h1 {
-  margin: 0 0 0.5rem 0;
-  color: #2c3e50;
-  font-size: 2.5rem;
+.back-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.park-title p {
-  margin: 0;
-  color: #7f8c8d;
-  font-size: 1.1rem;
-  font-weight: 500;
+.back-link:hover {
+  text-decoration: underline;
 }
 
 .park-description {
   font-size: 1.1rem;
-  line-height: 1.6;
-  color: #34495e;
+  line-height: 1.8;
   margin-bottom: 2rem;
 }
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  background-color: #f8f9fa;
-  padding: 2rem;
+/* --- 3. SIMPLE INFO CARDS --- */
+.info-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
   border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.info-section h3 {
-  color: #2c3e50;
+.info-card h3 {
   margin-top: 0;
-  border-bottom: 1px solid #bdc3c7;
-  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.info-row {
+  margin-bottom: 1rem;
+}
+
+.info-row strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #34495e;
+}
+
+.info-row p {
+  margin: 0;
+  color: #555;
+}
+
+/* --- 4. LISTS & GRIDS --- */
+.fees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fee-item {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 4px solid #3498db;
+}
+
+.toggle-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #ecf0f1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .activity-tags {
@@ -69,123 +153,23 @@
 }
 
 .activity-tag {
-  background-color: #e0e6ed;
-  color: #2c3e50;
-  padding: 4px 10px;
+  background: white;
+  border: 1px solid #bdc3c7;
+  padding: 6px 12px;
   border-radius: 16px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.9rem;
 }
 
-p {
-    color: #2c3e50;
-}
-
-
-.fees-list {
-  display: flex;
-  flex-direction: column;
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
-  max-height: 400px; 
-  overflow-y: auto; 
-  padding-right: 10px; 
+  margin-top: 1rem;
 }
 
-/* Add this new class for the official website link */
-.official-link {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding: 10px 15px;
-  background-color: #ecf0f1;
-  color: #2c3e50;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-.official-link:hover {
-  background-color: #bdc3c7;
-}
-
-/* --- UTILITY & COMPONENT STYLES --- */
-
-.status-message {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.status-message.error {
-  color: #e74c3c;
-}
-
-.back-link {
-  color: #3498db;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  display: inline-block;
-  transition: color 0.2s ease;
-}
-
-.back-link:hover {
-  color: #2980b9;
-}
-
-/* Overrides the default StampButton styles only when inside the header */
-.park-header .stamp-btn {
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  width: auto;
-}
-
-.info-text {
-  margin-top: 5px;
-  font-size: 0.95rem;
-  color: #34495e;
-}
-
-.info-text.spaced {
-  margin-bottom: 10px;
-}
-
-.info-text.large {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.directions-link {
-  color: #2980b9;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.directions-link:hover {
-  text-decoration: underline;
-}
-
-/* Modifier class to remove the scrollbar when showing all fees */
-.fees-list.expanded {
-  max-height: none;
-  overflow-y: visible;
-}
-
-.toggle-btn {
-  margin-top: 10px;
-  padding: 8px;
-  background-color: #ecf0f1;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #2c3e50;
-  transition: background-color 0.2s;
-}
-
-.toggle-btn:hover {
-  background-color: #bdc3c7;
-}
-
-/* Forces a grid item to span the entire width of the container */
-.full-width {
-  grid-column: 1 / -1;
+.gallery-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
 }

@@ -1,46 +1,98 @@
-:root {
-  --nav-bg-color: #2c3e50;
-  --nav-text-color: #ffffff;
-  --nav-hover-color: #3498db;
-  --nav-padding: 1rem 2rem;
-  --nav-font-family: system-ui, -apple-system, sans-serif;
-}
-
+/* src/components/NavBar.css */
 
 .navbar {
+  background-color: #1c211e; /* Deep forest charcoal */
+  padding: 0 2rem;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: var(--nav-padding);
-  background-color: var(--nav-bg-color);
-  font-family: var(--nav-font-family);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  justify-content: space-between;
+  border-bottom: 2px solid #2d3630;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Global Link Reset for Navbar */
+.navbar a {
+  text-decoration: none;
+  color: #e2e8f0;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .navbar-brand a {
-  color: var(--nav-text-color);
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
 }
 
-.navbar-nav {
+/* Layout Containers */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+  margin-left: 3rem;
+}
+
+.navbar-links {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
 
-.nav-item a {
-  color: var(--nav-text-color);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.nav-item a:hover {
-  color: var(--nav-hover-color);
+/* Hover States */
+.navbar-links a:hover,
+.nav-link-subtle:hover {
+  color: #79b06f; /* Muted NPS green */
+}
+
+/* Typography & Elements */
+.user-greeting {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.btn-outline,
+.btn-primary {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #475569;
+  color: #e2e8f0;
+}
+
+.btn-outline:hover {
+  border-color: #cbd5e1;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn-primary {
+  background: #2d5a27; /* Solid NPS Green */
+  border: 1px solid #2d5a27;
+  color: #ffffff !important; /* Force override to prevent anchor tag styles */
+}
+
+.btn-primary:hover {
+  background: #397032;
+  border-color: #397032;
 }

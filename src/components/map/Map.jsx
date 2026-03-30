@@ -2,18 +2,28 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import { Link } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import { divIcon } from 'leaflet'; 
-import { usePassport } from '../../context/PassportContext'; 
-import StampButton from '../passport/StampButton';
+
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import './Map.css'; 
 
 export default function Map({ parks }) {
-  const { visitedParks, stampPark } = usePassport();
   
   const centerPosition = [39.8283, -98.5795];
   const defaultZoom = 4;
+function MapResizer() {
+  const map = useMap();
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100); 
 
+    return () => clearTimeout(timer);
+  }, [map]);
+
+  return null;
+}
   return (
     <MapContainer
       center={centerPosition}
@@ -35,14 +45,13 @@ export default function Map({ parks }) {
           const lat = parseFloat(park.latitude);
           const lng = parseFloat(park.longitude);
 
-          const isStamped = visitedParks.some((p) => p.id === park.id);
 
           const parkIcon = divIcon({
-            className: `custom-marker ${isStamped ? 'stamped-marker' : ''}`,
+            className: `custom-marker`,
             iconSize: [14, 14],
             iconAnchor: [7, 7],
           });
-
+         
           return (
             <Marker
               key={park.id}
@@ -61,7 +70,6 @@ export default function Map({ parks }) {
                 <Link to={`/park/${park.parkCode}`} className="popup-details-link">
                   View Park Details &rarr;
                 </Link>
-                <StampButton park={park} />
               </Popup>
             </Marker>
           );
