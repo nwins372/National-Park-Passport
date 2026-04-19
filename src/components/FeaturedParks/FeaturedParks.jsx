@@ -17,7 +17,6 @@ export default function FeaturedParks({ parks }) {
     <div className="py-12">
       <h2 className="text-3xl font-bold text-stone-900 mb-8">Featured Destinations</h2>
       
-      {/* 1 column on mobile, 3 columns on medium screens and up */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {featured.map((park) => {
@@ -29,12 +28,12 @@ export default function FeaturedParks({ parks }) {
             <Link 
                 to={`/park/${park.parkCode}`} 
                 key={park.id} 
-                className="group" // "group" lets us trigger hover effects on child elements
+                className="group" 
             >
-                {/* The Card Container */}
+
                 <div className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
                   
-                  {/* The Image */}
+   
                   <img 
                     src={imageUrl} 
                     alt={park.images?.[0]?.altText || park.fullName} 
@@ -42,7 +41,7 @@ export default function FeaturedParks({ parks }) {
                     loading="lazy" 
                   />
                   
-                  {/* The Text Content */}
+     
                   <div className="p-6 flex-grow">
                     <h3 className="text-xl font-bold text-stone-800 mb-3 group-hover:text-emerald-700 transition-colors">
                       {park.fullName}

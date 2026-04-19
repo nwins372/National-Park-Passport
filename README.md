@@ -2,12 +2,14 @@
 ![screenshot of project home page](home_screenshot1.png)
 ![screenshot of park detail page](park_detail.png)
 ## Description
-A web application designed to help users learn more about the 63 official US National Parks. The National Park Service API was used to retrieve detailed park data. Also features an interactive map for exploration & dynamic park detail pages.
+This project is designed to help users learn more about the 63 official US National Parks. The frontend was coded using React.js and TailwindCSS.
+The National Park Service API was used to retrieve detailed park data. 
+The coordinate data was parsed be rendered to an interactive map using Leaflet. React Router was used to generate detailed pages specific to each park 
 
 ## Technologies Used
 
 * React.js
-* Leaflet.js 
+* Leaflet.js + React-Leaflet
 * National Park Service (NPS) API
 * TailwindCSS
 

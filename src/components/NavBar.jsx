@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
 export default function NavBar() {
-  const location = useLocation();
 
   return (
     <nav className="sticky top-0 z-[9999] w-full bg-white border-b border-stone-200">
